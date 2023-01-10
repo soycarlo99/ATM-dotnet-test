@@ -1,5 +1,8 @@
 using System.Collections.Generic;
-class Bankomat {
+
+namespace banko;
+
+public class Bankomat {
 
     bool cardInserted = false;
     Card card;
@@ -39,7 +42,7 @@ class Bankomat {
     }
 
     public int withdraw(int amount){
-        if(amount <= machineBalance && amount <= card.account.getBalance()){
+        if(amount > 0 && amount <= machineBalance && amount <= card.account.getBalance()){
             machineBalance -= amount;
             card.account.withdraw(amount);
             msgs.Add("Withdrawing " + amount);
@@ -49,6 +52,10 @@ class Bankomat {
                 msgs.Add("Machine has insufficient funds"); 
             }else if(amount > card.account.getBalance()){
                 msgs.Add("Card has insufficient funds");
+            }
+            else
+            {
+                msgs.Add("You can not withdraw 0 or less money");
             }                
             return 0;
         }

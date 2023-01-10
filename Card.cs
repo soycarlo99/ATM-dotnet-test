@@ -1,4 +1,6 @@
-class Card {
+namespace banko;
+
+public class Card {
 
     public string pin = "0123";
     public Account account;
